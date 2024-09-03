@@ -23,11 +23,14 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Set up SSH known hosts
+        run: echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+        env:
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+
       - name: Deploy to EC2
         run: |
-          ssh ubuntu@ec2-35-171-28-111.compute-1.amazonaws.com << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-171-28-111.compute-1.amazonaws.com << 'EOF'
           cd /var/www/html
           git pull origin main
           EOF
-        env:
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
