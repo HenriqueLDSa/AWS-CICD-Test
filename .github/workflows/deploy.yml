@@ -13,9 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Deploy to DigitalOcean
+    - name: Deploy to AWS
       run: |
-        ssh -o StrictHostKeyChecking=no root@your_server_ip << 'EOF'
+        ssh -o StrictHostKeyChecking=no root@ec2-35-171-28-111.compute-1.amazonaws.com << 'EOF'
         cd /var/www/html
         git pull origin main
         EOF
