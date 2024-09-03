@@ -15,7 +15,7 @@ jobs:
 
     - name: Deploy to AWS
       run: |
-        ssh -o StrictHostKeyChecking=no root@ec2-35-171-28-111.compute-1.amazonaws.com << 'EOF'
+        ssh -o StrictHostKeyChecking=no ubuntu@ec2-35-171-28-111.compute-1.amazonaws.com << 'EOF'
         cd /var/www/html
         git pull origin main
         EOF
