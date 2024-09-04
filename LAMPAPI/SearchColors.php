@@ -1,11 +1,13 @@
 <?php
 
 	$inData = getRequestInfo();
+
+	$config = include '/var/www/config/config.php';
 	
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	$conn = new mysqli($config['DB_HOST'], $config['DB_USER'], $config['DB_PASSWORD'], $config['DB_NAME']);
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
